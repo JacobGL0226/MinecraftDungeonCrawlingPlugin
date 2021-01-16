@@ -1,0 +1,4 @@
+main: iriakar.plugins.firstplugin.Main
+name: FirstPlugin
+version: 0.0.1
+api-version: 1.16
