@@ -16,9 +16,6 @@ The plug allows you to:
 
 
 What is a room?
-  A room is any enclosed structure with three important blocks:
-    A block of green wool (The room's exit)
-    A block of red wool (The room's entrance)
-    The type of block the door will be made out of (this is put on top of the room's exit block).
+  A room is any enclosed structure with three important blocks: A block of green wool (The room's exit), a block of red wool (The room's entrance), and finally the type of block the door will be made out of (this is put on top of the room's exit block).
     
 Additional blocks include: zombie and skeleton heads, which get converted into the actual enemies upon loading the room.
