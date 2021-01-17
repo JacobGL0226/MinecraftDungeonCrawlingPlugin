@@ -1,5 +1,8 @@
 A Minecraft Spigot plugin that lets players generate dungeons with a roguelike playstyle.
 
+Video of the plugin in action:
+https://youtu.be/Zlz0kjTOPVM
+
 
 The plug allows you to:
   Build the very dungeon rooms that will be generated for the dungeon
