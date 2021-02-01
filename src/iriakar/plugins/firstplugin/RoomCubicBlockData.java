@@ -167,9 +167,12 @@ public class RoomCubicBlockData extends CubicBlockData {
 		
 		blockData = rotatedData;
 		
+		Bukkit.broadcastMessage("Old entrance location: " + relativeEntranceDoorLocation.getLocation().toString());
 		Location location = relativeEntranceDoorLocation.getLocation();
 		Location newLocation = new Location(location.getWorld(), (length-1) - location.getZ(), location.getY(), location.getX());
 		relativeEntranceDoorLocation.setLocation(newLocation);
+		
+		Bukkit.broadcastMessage("Old entrance location: " + relativeEntranceDoorLocation.getLocation().toString());
 		
 		location = relativeExitDoorLocation.getLocation();
 		newLocation = new Location(location.getWorld(), (length-1) - location.getZ(), location.getY(), location.getX());
@@ -233,17 +236,16 @@ public class RoomCubicBlockData extends CubicBlockData {
 		
 		if (exitDoorDirection.direction == Direction.Directions.NORTH || exitDoorDirection.direction == Direction.Directions.SOUTH) {
 			exitDoorDirection.flip();
-			
-			location = relativeExitDoorLocation.getLocation();
-			relativeExitDoorLocation.setLocation(new Location(location.getWorld(), location.getX(), location.getY(), width-location.getZ()-1));
 		}
 		
 		if (entranceDoorDirection.direction == Direction.Directions.NORTH || entranceDoorDirection.direction == Direction.Directions.SOUTH) {
 			entranceDoorDirection.flip();
-			
-			location = relativeEntranceDoorLocation.getLocation();
-			relativeEntranceDoorLocation.setLocation(new Location(location.getWorld(), location.getX(), location.getY(), width-location.getZ()-1));
 		}
+		
+		location = relativeExitDoorLocation.getLocation();
+		relativeExitDoorLocation.setLocation(new Location(location.getWorld(), location.getX(), location.getY(), width-location.getZ()-1));
+		location = relativeEntranceDoorLocation.getLocation();
+		relativeEntranceDoorLocation.setLocation(new Location(location.getWorld(), location.getX(), location.getY(), width-location.getZ()-1));
 	}
 	
 	public Material setRelativeBlockAt(int x, int y, int z, Material material) {

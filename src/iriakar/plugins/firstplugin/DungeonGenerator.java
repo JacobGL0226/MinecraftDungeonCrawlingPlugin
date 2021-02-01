@@ -128,10 +128,14 @@ public class DungeonGenerator {
 			blockData.flipZ();
 		}
 		
+		Bukkit.broadcastMessage(String.format("Current relative exit: %s\nCurrent next entrance: %s", currentRoom.blockData.relativeExitDoorLocation.getLocation(), blockData.getRelativeEntranceDoorLocation()));
+		
 		// Set the exit/entrance to be on the same location
 		offset[0] = currentRoom.blockData.getRelativeExitDoorLocation().getX() - blockData.getRelativeEntranceDoorLocation().getX();
 		offset[1] = currentRoom.blockData.getRelativeExitDoorLocation().getY() - blockData.getRelativeEntranceDoorLocation().getY();
 		offset[2] = currentRoom.blockData.getRelativeExitDoorLocation().getZ() - blockData.getRelativeEntranceDoorLocation().getZ();
+		
+		Bukkit.broadcastMessage(String.format("Offset: %f, %f, %f", offset[0], offset[1], offset[2]));
 		
 		if (currentRoom.blockData.getExitDoorDirection().getDirection() == Direction.Directions.EAST) {
 			offset[0] += 1;
