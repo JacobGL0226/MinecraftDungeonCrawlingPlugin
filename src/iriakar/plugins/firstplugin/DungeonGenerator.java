@@ -6,9 +6,15 @@ import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.player.PlayerInteractEvent;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class DungeonGenerator {
+	
+	final static String startingRoomName = "startRoom.ser";
+	static final String PLUGIN_DIR = "plugins\\CubicBlockData\\";
+	final private Random random = new Random();
 	
 	private Plugin plugin;
 	
@@ -31,7 +37,7 @@ public class DungeonGenerator {
 			return;
 		}
 		
-		RoomCubicBlockData blockData = RoomCubicBlockData.readData("testRoom");
+		RoomCubicBlockData blockData = RoomCubicBlockData.readData(startingRoomName.replace(".ser", ""));
 		roomNumber = 0;
 		
 		dungeonStarted = true;
@@ -73,10 +79,31 @@ public class DungeonGenerator {
 		}
 		
 		if (dungeonRooms.get(0).doorBlocks.contains(event.getClickedBlock())) {
+			Bukkit.broadcastMessage("Attempting right click event...");
+			
 			if (dungeonRooms.get(0).roomObjective.isCompleted()) {
 				dungeonRooms.get(0).removeDoor();
-				buildNextRoom(RoomCubicBlockData.readData("testRoom"));
+				
+				String[] roomNames = new File(PLUGIN_DIR).list();
+				
+				String outputString = "";
+				
+				for (int i = 0; i < roomNames.length; i++) {
+					outputString += roomNames[i] + ", ";
+				}
+				
+				Bukkit.broadcastMessage(outputString);
+				
+				String roomName = startingRoomName;
+
+				while (roomName.equals(startingRoomName)) {
+					roomName = roomNames[Math.abs((random.nextInt()) % roomNames.length)];
+					Bukkit.broadcastMessage("Current room: " + roomName);
+				}
+				
+				buildNextRoom(RoomCubicBlockData.readData(roomName.replace(".ser", "")));
 			}
+			
 			else {
 				Bukkit.broadcastMessage(dungeonRooms.get(0).roomObjective.toString());
 			}

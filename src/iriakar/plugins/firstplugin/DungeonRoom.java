@@ -28,8 +28,6 @@ public class DungeonRoom {
 	// DATA FOR HANDLING ENTITIES
 	ArrayList<LivingEntity> roomEnemies;
 	
-	
-	
 	// TO-DO: REMOVE THIS AND REFACTOR METHODS
 	ArrayList<Block> tempDoorBlocks;
 	
